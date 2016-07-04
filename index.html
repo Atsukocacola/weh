@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>weh button</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+  <!-- JAVASCRIPT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <style>
+      body
+      {
+        background-color: #5FD2E2;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        color: #3B6065;
+      }
+
+      a
+      {
+        text-decoration: none;
+      }
+
+      a:link, a:visited, a:hover
+      {
+        color: #3B6065;
+      }
+
+
+      #weh
+      {
+        width: 100%;
+        background-image: url(images/weh1.svg);
+        background-size: contain;
+        border: none;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      #weh:hover
+      {
+        background-image: url(images/weh2.svg);
+      }
+      #weh:active
+      {
+        background-image: url(images/weh3.svg);
+      }
+
+      #credits
+      {
+          visibility: hidden;
+         position: absolute;
+         left: 0px;
+         top: 0px;
+         width:100%;
+         height:100%;
+         text-align:center;
+         z-index: 1000;
+         background-color: #E48771;
+      }
+
+
+  </style>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body onload="insertScore()">
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div id="credits">
+
+    <div id="credits "class="container" id="credits">
+        <div class="row" style="margin-top: 3%">
+          <div class="eight columns">
+              <!-- filler -->
+              <p></p>
+          </div> <!-- filler end-->
+
+          <div class="1 column">
+              <h6 onclick="toggleCredits()" style="text-align: right; color: white">close</h6>
+          </div>
+
+        </div> <!-- row end-->
+
+        <div class="row" style="margin-top: 2%">
+          <div class="four columns">
+            <!-- filler -->
+              <p></p>
+          </div> <!-- filler end-->
+
+          <div class="four columns">
+              <h3>Credits</h3>
+          </div>
+        </div> <!-- row end-->
+
+        <div class="row" style="margin-top: 3%">
+            <div class="two columns">
+            <!-- filler -->
+              <p></p>
+            </div> <!-- filler end-->
+
+            <div class="five columns" style="text-align: left;">
+              <h5>Producer of 'weh' audio</h5>
+            </div>
+
+            <div class="three columns" style="text-align: left; color: #F2ECA4">
+                <h5>Arleen Agama<h5>
+            </div>
+        </div> <!-- row end-->
+
+      <div class="row" style="margin-top: 2%">
+        <div class="two columns">
+          <!-- filler -->
+            <p></p>
+          </div> <!-- filler end-->
+
+          <div class="five columns" style="text-align: left;">
+            <h5><a href="https://www.youtube.com/watch?v=Qxjirh4M1f8">Mediocre clarinet player</a></h5> <p style="font-size: 1.2rem;">(but also programmer and designer)</p>
+          </div>
+
+          <div class="three columns" style="text-align: left; color: #F2ECA4">
+              <h5>Atsuko Shimizu<h5>
+          </div>
+        </div> <!-- row end-->
+
+      </div> <!-- container page end-->
+
+  </div> <!-- credits end-->
+
+  <div class="container">
+
+    <div class="row" style="margin-top: 3%">
+        <div class="eight columns">
+            <!-- filler -->
+            <p></p>
+        </div> <!-- filler end-->
+
+        <div class="1 column">
+            <h6 onclick="toggleCredits()" style="text-align: right; color: white">credits</h6>
+        </div>
+    </div> <!-- row end-->
+
+    <div class="row" style="margin-top: 5%">
+      <div class="four columns">
+        <!-- filler -->
+          <p></p>
+      </div> <!-- filler end-->
+
+      <div class="four columns">
+          <h4>Your score:</h4>
+          <h1 id="score" style="font-size: 17rem; color: #E48771">0</h1>
+      </div>
+    </div> <!-- row end-->
+
+    <div class="row" style="margin-top: 2%">
+        <div class="four columns">
+            <!-- filler -->
+            <p></p>
+        </div> <!-- filler end-->
+
+        <div class="four columns">
+            <audio id="audio" src="audio/hey.m4a"></audio>
+            <button class="u-max-full-width" type="button" id="weh" onclick="buttonAction()"></button>
+        </div>
+    </div> <!-- row end-->
+
+  </div> <!-- container end-->
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<script>
+
+  var score;
+  var audio = document.getElementById("audio");
+
+  /* 
+    1 = short weh
+    2 = long weh
+    3 = curse word
+  */
+  var probability = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3]
+  var index;
+
+  var creditsScreen = document.getElementById("credits");
+
+  function insertScore()
+  {
+      if(localStorage.getItem("score") == null)
+      {
+        score = 0;
+        console.log("Your score: " + score);
+      }
+      else
+      {
+        score = parseInt(localStorage.getItem("score"));
+        console.log("Your score: " + score);
+      }
+
+      document.getElementById("score").innerHTML = score;
+  }
+
+  function buttonAction()
+  {
+    score +=1;
+    document.getElementById("score").innerHTML = score;
+    localStorage.setItem("score", score);
+
+    // randomly choose an audio file to play based on the probability array
+    index = Math.floor(Math.random() * probability.length);
+
+    if(probability[index] == 1)
+    {
+      audio.src = "audio/hey.m4a"
+      audio.play();
+    }
+    else if(probability[index] == 2)
+    {
+      audio.src = "audio/ok.m4a"
+      audio.play();
+    }
+    else
+    {
+      audio.src = "audio/omg.m4a"
+      audio.play();
+    }
+  }
+  
+  function toggleCredits()
+  {    
+    creditsScreen.style.visibility = (creditsScreen.style.visibility == "visible") ? "hidden" : "visible";
+  }
+
+
+</script>
+</body>
+</html>
