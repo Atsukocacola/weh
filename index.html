@@ -53,10 +53,13 @@
         border: none;
         background-repeat: no-repeat;
         background-position: center;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+}
       }
       #weh:hover
       {
-        background-image: url(images/weh2.png);
+        src: url(images/weh2.png);
       }
       #weh:active
       {
@@ -70,9 +73,10 @@
          left: 0px;
          top: 0px;
          width:100%;
-         height:120%;
+         height:125%;
          text-align:center;
          z-index: 1000;
+         margin: 0;
          background-color: #E48771;
       }
 
@@ -103,7 +107,7 @@
 
         </div> <!-- row end-->
 
-        <div class="row" style="margin-top: 2%">
+        <div class="row">
           <div class="four columns">
             <!-- filler -->
               <p></p>
@@ -114,13 +118,14 @@
           </div>
         </div> <!-- row end-->
 
-        <div class="row" style="margin-top: 3%">
+        <div class="row">
             <div class="two columns">
             <!-- filler -->
               <p></p>
             </div> <!-- filler end-->
 
             <div class="five columns" style="text-align: left;">
+
               <h5>Producer of 'weh' audio</h5>
             </div>
 
@@ -129,7 +134,7 @@
             </div>
         </div> <!-- row end-->
 
-      <div class="row" style="margin-top: 2%">
+      <div class="row">
         <div class="two columns">
           <!-- filler -->
             <p></p>
@@ -161,7 +166,7 @@
         </div>
     </div> <!-- row end-->
 
-    <div class="row" style="margin-top: 5%">
+    <div class="row" id="score-row">
       <div class="four columns">
         <!-- filler -->
           <p></p>
@@ -180,8 +185,8 @@
         </div> <!-- filler end-->
 
         <div class="four columns">
-            <audio id="audio" src="audio/hey.m4a"></audio>
-            <button class="u-max-full-width" type="button" id="weh" onclick="buttonAction()"></button>
+            <audio id="audio" src="audio/short-weh1.mp3"></audio>
+            <button type="button" id="weh" onclick="buttonAction()" width="400px"value=" "></input>
         </div>
     </div> <!-- row end-->
 
@@ -201,6 +206,9 @@
     3 = curse word
   */
   var probability = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3]
+  var highProb = ["audio/short-weh1.mp3", "audio/short-weh2.mp3", "audio/ugh.mp3"]
+  var medProb = ["audio/long-weh.mp3", "audio/long-weh2.mp3"]
+  var lowProb = ["audio/f.mp3", "audio/f2.mp3", "audio/mf.mp3", "audio/mf2.mp3", "audio/sh.mp3"]
   var index;
 
   var creditsScreen = document.getElementById("credits");
@@ -210,12 +218,10 @@
       if(localStorage.getItem("score") == null)
       {
         score = 0;
-        console.log("Your score: " + score);
       }
       else
       {
         score = parseInt(localStorage.getItem("score"));
-        console.log("Your score: " + score);
       }
 
       document.getElementById("score").innerHTML = score;
@@ -232,17 +238,21 @@
 
     if(probability[index] == 1)
     {
-      audio.src = "audio/hey.m4a"
+      // randomly choose an audio file to play with high probability
+      index = Math.floor(Math.random() * highProb.length);
+      audio.src = highProb[index];
       audio.play();
     }
     else if(probability[index] == 2)
     {
-      audio.src = "audio/ok.m4a"
+      index = Math.floor(Math.random() * medProb.length);
+      audio.src = medProb[index];
       audio.play();
     }
     else
     {
-      audio.src = "audio/omg.m4a"
+      index = Math.floor(Math.random() * lowProb.length);
+      audio.src = lowProb[index];
       audio.play();
     }
   }
