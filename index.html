@@ -47,9 +47,10 @@
 
       #weh
       {
+        width: 100%;
         background-image: url(images/weh1.png);
-        border: none;
         background-size: contain;
+        border: none;
         background-repeat: no-repeat;
         background-position: center;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -58,7 +59,7 @@
       }
       #weh:hover
       {
-        background-image: url(images/weh2.png);
+        src: url(images/weh2.png);
       }
       #weh:active
       {
@@ -184,8 +185,8 @@
         </div> <!-- filler end-->
 
         <div class="four columns">
-            <audio id="audio" src="audio/hey.m4a"></audio>
-            <button type="button" id="weh" onclick="buttonAction()"></button>
+            <audio id="audio" src="audio/short-weh1.mp3"></audio>
+            <button type="button" id="weh" onclick="buttonAction()" width="400px"value=" "></input>
         </div>
     </div> <!-- row end-->
 
@@ -205,6 +206,9 @@
     3 = curse word
   */
   var probability = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3]
+  var highProb = ["audio/short-weh1.mp3", "audio/short-weh2.mp3", "audio/ugh.mp3"]
+  var medProb = ["audio/long-weh.mp3", "audio/long-weh2.mp3"]
+  var lowProb = ["audio/f.mp3", "audio/f2.mp3", "audio/mf.mp3", "audio/mf2.mp3", "audio/sh.mp3"]
   var index;
 
   var creditsScreen = document.getElementById("credits");
@@ -214,12 +218,10 @@
       if(localStorage.getItem("score") == null)
       {
         score = 0;
-        console.log("Your score: " + score);
       }
       else
       {
         score = parseInt(localStorage.getItem("score"));
-        console.log("Your score: " + score);
       }
 
       document.getElementById("score").innerHTML = score;
@@ -236,17 +238,21 @@
 
     if(probability[index] == 1)
     {
-      audio.src = "audio/hey.m4a"
+      // randomly choose an audio file to play with high probability
+      index = Math.floor(Math.random() * highProb.length);
+      audio.src = highProb[index];
       audio.play();
     }
     else if(probability[index] == 2)
     {
-      audio.src = "audio/ok.m4a"
+      index = Math.floor(Math.random() * medProb.length);
+      audio.src = medProb[index];
       audio.play();
     }
     else
     {
-      audio.src = "audio/omg.m4a"
+      index = Math.floor(Math.random() * lowProb.length);
+      audio.src = lowProb[index];
       audio.play();
     }
   }
