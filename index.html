@@ -215,7 +215,7 @@
 
   function insertScore()
   {
-      if(localStorage.getItem("score") == null)
+      if(isNaN(localStorage.getItem("score")) || localStorage.getItem("score") == null)
       {
         score = 0;
       }
