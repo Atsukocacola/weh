@@ -1,0 +1,56 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <style>
+        body
+        {
+          background-color: #f8bbd0;
+          text-align: center;
+          color: #455a64;
+        }
+        h1
+        {
+          color: #455a64;
+          text
+        }
+      </style>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="row" style="margin-top: 20%">
+            <div class="col s4 offset-s4">
+                <h3>Arleeeeeeeeen</h3>
+            </div>
+        </div> <!-- row end-->
+
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <audio id="audio" src="spoileralert.mp3"></audio>
+                <a id="spoileralert" onclick="buttonAction()" class="waves-effect waves-light btn-large" style="width: 100%">Spoiler Alert</a>
+            </div>
+        </div> <!-- row end-->
+      </div>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+      <script>
+        var audio = document.getElementById("audio");
+
+        function buttonAction()
+        {
+          audio.play();
+        }
+        
+      </script
+    </body>
+  </html>
